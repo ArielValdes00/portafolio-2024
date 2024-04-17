@@ -1,0 +1,46 @@
+---
+import { Image } from "astro:assets";
+import { media } from '../utils/media';
+---
+
+<section
+  class="flex flex-col sm:flex-row sm:items-center justify-between px-3 pt-8 pb-10 gap-5"
+>
+  <div class="flex flex-col">
+    <p class="text-3xl font-bold">
+      ¡Hola!, soy <span
+        class="bg-gradient-to-br from-sky-500 to-cyan-400 bg-clip-text text-transparent"
+        >Ariel</span
+      > 👋
+    </p>
+    <p class="mt-3 md:mt-6 text-xl md:leading-9 md:max-w-xl">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+      malesuada nisi tellus, non imperdiet nisi tempor at. Lorem ipsum dolor sit
+      amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+      labore et dolore.
+    </p>
+    <ul class="flex items-center gap-5 mt-4 md:mt-6">
+      {
+        media.map(({ icon, name }) => (
+          <li>
+            <Image
+              src={icon}
+              alt={name}
+              title={name}
+              class="size-8 hover:scale-105 cursor-pointer transition duration-500"
+              loading="eager"
+              height={50}
+              width={50}
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <img
+    class="h-80 w-64 mx-auto sm:m-0"
+    src="/images/avatar.svg"
+    alt="Avatar image"
+    loading="lazy"
+  />
+</section>

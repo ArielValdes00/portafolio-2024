@@ -1,0 +1,35 @@
+<header class="py-6 px-3">
+  <nav class="flex items-center justify-between">
+    <span class="font-bold text-2xl">
+      A<span class="text-sky-500">V</span>
+    </span>
+
+    <ul class="flex items-center gap-5 font-medium">
+      <li class="p-1 cursor-pointer position-relative">
+        Descargar CV
+      </li>
+    </ul>
+  </nav>
+</header>
+<style>
+  li {
+    position: relative;
+  }
+
+  li::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2.5px;
+    bottom: 0;
+    left: 0;
+    background-color: #0ea5e9;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+  }
+
+  li:hover::before {
+    visibility: visible;
+    width: 100%;
+  }
+</style>

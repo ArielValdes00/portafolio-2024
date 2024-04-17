@@ -1,0 +1,22 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../partials/Hero.astro";
+import Navbar from "../partials/Navbar.astro";
+import TechCarrousel from "../components/TechCarrousel";
+import Projects from "../partials/Projects.astro";
+import Contact from "../partials/Contact.astro";
+---
+
+<Layout title="Welcome to Astro.">
+  <Navbar />
+  <Hero />
+  <TechCarrousel client:load />
+  <p class="text-start pt-6 pb-3 px-3 text-2xl font-bold">
+    Proyectos <span
+      class="bg-gradient-to-br from-sky-500 to-cyan-400 bg-clip-text text-transparent"
+      >Recientes</span
+    >
+  </p>
+  <Projects />
+  <Contact />
+</Layout>

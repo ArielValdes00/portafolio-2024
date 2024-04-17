@@ -1,0 +1,27 @@
+---
+import { Button } from '@nextui-org/react';
+
+interface Props {
+  title: string;
+  body: string;
+  image: string;
+}
+
+const { title, body, image } = Astro.props;
+---
+
+<div class="overflow-hidden rounded-md bg-slate-800">
+  <img src={image} alt="project" />
+  <div class="p-3 text-center">
+    <h2 class="font-semibold text-lg">
+      {title}
+    </h2>
+    <p class="text-sm">
+      {body}
+    </p>
+    <div class="mt-3 flex items-center justify-center gap-3">
+      <Button variant='solid' size='sm' className='text-gray-100 bg-slate-700 w-full font-semibold'>Github</Button>
+      <Button variant='solid' size='sm' className='text-gray-100 bg-slate-700 w-full font-semibold'>Demo</Button>
+    </div>
+  </div>
+</div>
