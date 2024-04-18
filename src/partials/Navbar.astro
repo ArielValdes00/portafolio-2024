@@ -1,3 +1,7 @@
+---
+import { Link } from "@nextui-org/react";
+---
+
 <header class="py-6 px-3">
   <nav class="flex items-center justify-between">
     <span class="font-bold text-2xl">
@@ -5,31 +9,15 @@
     </span>
 
     <ul class="flex items-center gap-5 font-medium">
-      <li class="p-1 cursor-pointer position-relative">
+      <Link
+        href="/pdf/cv.pdf"
+        className="relative p-1 cursor-pointer before text-white"
+        target="_blank"
+        download={"cv.pdf"}
+      >
         Descargar CV
-      </li>
+      </Link>
     </ul>
   </nav>
 </header>
-<style>
-  li {
-    position: relative;
-  }
 
-  li::before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2.5px;
-    bottom: 0;
-    left: 0;
-    background-color: #0ea5e9;
-    visibility: hidden;
-    transition: all 0.3s ease-in-out;
-  }
-
-  li:hover::before {
-    visibility: visible;
-    width: 100%;
-  }
-</style>

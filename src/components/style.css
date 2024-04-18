@@ -1,12 +1,12 @@
 .animate-infinite-scroll {
     animation: scrollInfinite 25s linear infinite;
-  }
+}
   
-  .paused .animate-infinite-scroll {
+.paused .animate-infinite-scroll {
     animation-play-state: paused;
-  }
+}
   
-  @keyframes scrollInfinite {
+@keyframes scrollInfinite {
     0% {
       transform: translateX(0);
     }
@@ -14,5 +14,38 @@
     100% {
       transform: translateX(-100%);
     }
+}
+
+.data-\[hover\=true\]\:bg-default-200[data-hover=true]{
+    background-color: #1e293b;
+}
+
+.group[data-focus=true] .group-data-\[focus\=true\]\:bg-default-100{
+    background-color: #1e293b;
+}
+
+.group[data-filled-within=true] .group-data-\[filled-within\=true\]\:text-default-600 {
+    color: #f3f4f6;
+}
+
+.group[data-has-value=true] .group-data-\[has-value\=true\]\:text-default-foreground{
+    color: #f3f4f6;
+}
+
+.before::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #0ea5e9;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
   }
+
+.before:hover::before {
+    visibility: visible;
+    width: 100%;
+}
   

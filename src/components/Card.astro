@@ -1,5 +1,6 @@
 ---
-import { Button } from '@nextui-org/react';
+import { Button } from "@nextui-org/react";
+import { Image } from "astro:assets";
 
 interface Props {
   title: string;
@@ -20,8 +21,34 @@ const { title, body, image } = Astro.props;
       {body}
     </p>
     <div class="mt-3 flex items-center justify-center gap-3">
-      <Button variant='solid' size='sm' className='text-gray-100 bg-slate-700 w-full font-semibold'>Github</Button>
-      <Button variant='solid' size='sm' className='text-gray-100 bg-slate-700 w-full font-semibold'>Demo</Button>
+      <Button
+        variant="solid"
+        radius="sm"
+        size="md"
+        className="text-gray-100 bg-slate-700 w-full font-semibold flex items-center"
+      >
+        <span>Github</span>
+        <Image
+          src="/icons-svg/github.svg"
+          alt="github"
+          height={13}
+          width={13}
+        />
+      </Button>
+      <Button
+        variant="solid"
+        radius="sm"
+        size="md"
+        className="text-gray-100 bg-slate-700 w-full font-semibold flex items-center"
+      >
+        <span>Demo</span>
+        <Image
+          src="/icons-svg/play.svg"
+          alt="github"
+          height={13}
+          width={13}
+        />
+      </Button>
     </div>
   </div>
 </div>

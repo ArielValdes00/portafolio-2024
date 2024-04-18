@@ -1,54 +1,11 @@
 ---
-import { Image } from "astro:assets";
 import ContactForm from "../components/ContactForm";
-import { media } from "../utils/media";
+import GetInTouch from "../components/GetInTouch";
 ---
 
 <section
   class="flex flex-col sm:flex-row justify-between sm:items-start gap-3 py-6 px-3 mt-8"
 >
-  <div class="flex flex-col gap-2">
-    <p class="text-start text-2xl font-bold">
-      ¡Contactame
-      <span
-        class="bg-gradient-to-br from-sky-500 to-cyan-400 bg-clip-text text-transparent"
-      >
-        Ahora!
-      </span>
-    </p>
-    <p class="sm:max-w-xs text-sm">
-      ¿Estás listo para dar el <b class="bg-gradient-to-br from-sky-500 to-cyan-400 bg-clip-text text-transparent">siguiente paso</b>?
-      Completa el formulario a continuación y comencemos a trabajar juntos en
-      hacer <b class="bg-gradient-to-br from-sky-500 to-cyan-400 bg-clip-text text-transparent">realidad</b> tus <b
-        class="bg-gradient-to-br from-sky-500 to-cyan-400 bg-clip-text text-transparent">proyectos</b
-      >.
-    </p>
-    <div
-      class="flex flex-row sm:flex-col items-center sm:items-start gap-4 sm:gap-2 mt-1"
-    >
-      <div class="flex items-center gap-2 text-sm">
-        <Image
-          src="/icons-svg/location.svg"
-          alt="location"
-          width={20}
-          height={20}
-        />
-        <p>Buenos Aires, Argentina</p>
-      </div>
-      <div class="flex items-center gap-2 text-sm">
-        <Image src="/icons-svg/email.svg" alt="email" width={20} height={20} />
-        <p>ariel.jvaldes20@gmail.com</p>
-      </div>
-    </div>
-    <div class="flex items-center my-2 gap-4">
-      {
-        media.map((icon) => (
-          <Image src={icon.icon} alt={icon.name} width={30} height={30} />
-        ))
-      }
-    </div>
-  </div>
-  <div>
-    <ContactForm client:load />
-  </div>
+  <GetInTouch client:load />
+  <ContactForm client:load />
 </section>

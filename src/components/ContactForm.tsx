@@ -1,12 +1,32 @@
-import { Button, Input, Textarea, input } from '@nextui-org/react';
-import React from 'react';
+import { Button, Input, Textarea } from '@nextui-org/react';
+import React, { useState } from 'react';
 import "./style.css";
 
 const ContactForm: React.FC = () => {
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    const sendMessage = () => {
+        setIsLoading(true);
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 2000)
+    };
+
     return (
         <form className='mt-2'>
-            <div className='flex items-center justify-between gap-2'>
+            <div className='flex items-center justify-between gap-2 text-gray-100'>
                 <Input size='sm' type="email" label="Email" classNames={{
+                    input: [
+                        "text-gray-100",
+                    ],
+                    label: [
+                        "text-gray-100",
+                    ],
+                    inputWrapper: [
+                        "bg-slate-700",
+                    ],
+                }} />
+                <Input size='sm' type="text" label="Asunto" classNames={{
                     input: [
                         "text-gray-100"
                     ],
@@ -17,17 +37,6 @@ const ContactForm: React.FC = () => {
                         "bg-slate-700",
                     ],
                 }} />
-                <Input size='sm' color='secondary' type="text" label="Asunto" classNames={{
-                    input: [
-                        "text-gray-100"
-                    ],
-                    label: [
-                        "text-gray-100"
-                    ],
-                    inputWrapper: [
-                        "bg-slate-700",
-                    ],
-                }}/>
             </div>
             <Textarea
                 label="Mensaje"
@@ -44,7 +53,7 @@ const ContactForm: React.FC = () => {
                     ],
                 }}
             />
-            <Button className='mt-2 w-full bg-sky-500 text-white'>Enviar</Button>
+            <Button className='mt-2 w-full bg-sky-500 text-white' onClick={sendMessage} isLoading={isLoading}>{isLoading ? '' : 'Enviar'}</Button>
         </form>
     )
 };

@@ -46,7 +46,7 @@ const TechCarrousel: React.FC = () => {
                                         src={icon.icon}
                                         alt={icon.name}
                                         title={icon.name}
-                                        className="size-12 cursor-pointer"
+                                        className="size-8 sm:size-12 cursor-pointer"
                                         loading="eager"
                                         onClick={handleClick}
                                     />
@@ -79,7 +79,7 @@ const TechCarrousel: React.FC = () => {
                                         src={icon.icon}
                                         alt={icon.name}
                                         title={icon.name}
-                                        className="size-12 cursor-pointer"
+                                        className="size-8 sm:size-12 cursor-pointer"
                                         loading="eager"
                                         onClick={handleClick}
                                     />
