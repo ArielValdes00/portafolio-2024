@@ -1,0 +1,143 @@
+---
+import BlogPost from "../../components/BlogPost";
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../partials/Navbar.astro";
+
+const post = {
+  title: "Añadiendo Componentes: Botón y Potenciómetro",
+  content: `¡Hola a todos! En esta tercera entrega de mi proyecto con Arduino, vamos a dar un paso más allá añadiendo nuevos componentes al LED que encendimos en el último post.
+
+En esta ocasión, vamos a integrar un botón para encender y apagar el LED con un solo toque. Además, exploraremos cómo utilizar un potenciómetro para ajustar el brillo del LED mientras está encendido. ¡Veamos cómo hacerlo!
+
+Primero, conectaremos el botón a un pin digital y programaremos el Arduino para que el LED se encienda cuando se presione el botón por primera vez y se apague cuando se presione nuevamente. Luego, usaremos el potenciómetro para controlar la intensidad luminosa del LED.
+
+A continuación, les dejo el código que utilizaremos para este nuevo proyecto:`,
+  image: "/images/post-three.jpg",
+  date: "10 de Julio, 2024",
+  code: `int ledPin = 13; // Pin digital del LED
+int buttonPin = 2; // Pin digital del botón
+bool ledState = false; // Estado actual del LED
+bool buttonState = false; // Estado actual del botón
+bool lastButtonState = false; // Estado anterior del botón
+
+void setup() {
+  pinMode(ledPin, OUTPUT); // Configura el pin del LED como salida
+  pinMode(buttonPin, INPUT_PULLUP); // Configura el pin del botón como entrada con resistencia pull-up interna
+}
+
+void loop() {
+  buttonState = digitalRead(buttonPin); // Lee el estado actual del botón
+
+  // Verifica si el estado del botón ha cambiado
+  if (buttonState != lastButtonState) {
+    delay(50); // Pequeña pausa para evitar rebotes
+    if (buttonState != lastButtonState) { // Verifica nuevamente el estado
+      if (buttonState == LOW) { // Si el botón se presiona
+        ledState = !ledState; // Cambia el estado del LED
+        digitalWrite(ledPin, ledState ? HIGH : LOW); // Enciende o apaga el LED
+      }
+    }
+  }
+
+  lastButtonState = buttonState; // Actualiza el estado anterior del botón
+}
+`,
+  code2: `const int ledPin = 9;      // Pin del LED con PWM
+const int buttonPin = 2;   // Pin del botón
+const int potPin = A0;     // Pin del potenciómetro
+int ledState = LOW;        // Estado inicial del LED
+int buttonState;           // Estado actual del botón
+int lastButtonState = HIGH; // Estado previo del botón
+
+unsigned long lastDebounceTime = 0;  // Tiempo del último cambio de estado
+unsigned long debounceDelay = 50;    // Retardo de debounce
+
+void setup() {
+  pinMode(ledPin, OUTPUT);          // Configura el pin del LED como salida
+  pinMode(buttonPin, INPUT_PULLUP); // Configura el pin del botón como entrada con pull-up interno
+  digitalWrite(ledPin, ledState);   // Asegura que el LED esté en el estado inicial
+}
+
+void loop() {
+  int reading = digitalRead(buttonPin); // Lee el estado del botón
+
+  // Comprueba si ha pasado el tiempo de debounce
+  if (reading != lastButtonState) {
+    lastDebounceTime = millis();
+  }
+
+  if ((millis() - lastDebounceTime) > debounceDelay) {
+    // Si el estado del botón ha cambiado
+    if (reading != buttonState) {
+      buttonState = reading;
+      
+      // Solo cambia el estado del LED si el botón está presionado
+      if (buttonState == LOW) {
+        ledState = !ledState; // Cambia el estado del LED
+        digitalWrite(ledPin, ledState ? HIGH : LOW);
+      }
+    }
+  }
+
+  lastButtonState = reading; // Almacena el estado previo del botón
+
+  // Si el LED está encendido, ajusta el brillo según el valor del potenciómetro
+  if (ledState == HIGH) {
+    int potValue = analogRead(potPin);     // Lee el valor del potenciómetro
+    int brightness = map(potValue, 0, 1023, 1, 255); // Mapea el valor a rango de 0 a 255
+    analogWrite(ledPin, brightness);       // Ajusta el brillo del LED
+  }
+}
+`,
+  contentPostCode: "En este video, explora cómo el botón permite controlar el encendido y apagado del LED con un toque.",
+  contentPostCode2: "A continuación, explora cómo el potenciómetro permite ajustar el brillo del LED una vez que está encendido.",
+  videoUrl:
+    "https://www.youtube.com/watch?v=QAXeJ2w5wlc&list=PLyLh25DppBIe40j3VBAslnVfs4Pz-B3ZB&index=3",
+  video: "/videos/third-post-2.mp4",
+  video2: "/videos/third-post.mp4",
+contentPostVideo: `En este video, podrás ver cómo funciona el botón para encender y apagar el LED con un solo toque. Observa el cambio de estado del LED y cómo esto permite un control más intuitivo de la iluminación.
+
+Ahora, vamos a agregar un potenciómetro para ajustar el brillo del LED mientras está encendido. A continuación, te mostraré el código necesario para integrar el potenciómetro con nuestro proyecto:`,
+  contentPostVideo2: `En este segundo video, mostramos cómo se utiliza el potenciómetro para ajustar el brillo del LED una vez que está encendido. Exploramos cómo este ajuste fino puede mejorar la experiencia de uso de nuestro proyecto de Arduino.`,
+  links: [
+    {
+      label: "Datasheet del botón",
+      url: "https://wiki-content.arduino.cc/documents/datasheets/Button.pdf",
+    },
+    {
+      label: "Datasheet del potenciómetro",
+      url: "https://c1555f5ec9.clvaw-cdnwnd.com/34662fcf1f1e607c561442431023ac8e/200008702-56937578bf/PDB18%20Datasheet.pdf",
+    },
+    {
+      label: "Simulación del Proyecto LED + Botón",
+      url: "https://wokwi.com/projects/403134878543550465",
+    },
+    {
+      label: "Simulación del Proyecto LED + botón + Potenciómetro",
+      url: "https://wokwi.com/projects/403134529016450049",
+    },
+  ],
+};
+
+---
+
+<Layout title="Welcome to Astro.">
+  <Navbar />
+  <BlogPost
+    client:only
+    title={post.title}
+    content={post.content}
+    contentPostCode={post.contentPostCode}
+    contentPostCode2={post.contentPostCode2}
+    image={post.image}
+    codeString={post?.code}
+    date={post.date}
+    videoUrl={post.videoUrl}
+    links={post.links}
+    video={post.video}
+    video2={post.video2}
+    contentPostVideo={post.contentPostVideo}
+    code2={post.code2}
+    contentPostVideo2={post.contentPostVideo2}
+  />
+</Layout>

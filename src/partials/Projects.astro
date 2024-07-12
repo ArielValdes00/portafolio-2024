@@ -1,21 +1,18 @@
 ---
 import Card from "../components/Card.astro";
+import { posts } from "../utils/data.astro";
 ---
 
 <section class="grid grid-cols-1 gap-3 md:grid-cols-3 py-6 px-3">
-  <Card
-    title="Chat-App"
-    image="/images/bg-chat-app.png"
-    body="Aplicación de chat que ofrece comunicación segura en tiempo real entre los usuarios."
-  />
-  <Card
-    title="Clear-Cash"
-    image="/images/bg-clear-cash1.png"
-    body="Gestion de gastos con informes intuitivos y categorización sencilla para inversiones, ropa, viajes y más."
-  />
-  <Card
-    title="Ecommerce"
-    image="/images/bg-ecommerce.png"
-    body="Plataforma integral de comércio electrónico que utiliza paypal como metodo de pago."
-  />
+  {
+    posts.map((post) => (
+      <Card
+        title={post.title}
+        image={post.image}
+        body={post.body}
+        date={post.date}
+        href={`/posts/${post.slug}`}
+      />
+    ))
+  }
 </section>

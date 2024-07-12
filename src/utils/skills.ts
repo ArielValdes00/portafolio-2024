@@ -63,4 +63,8 @@ export const skills = [
         name: "Laravel",
         icon: "/icons-svg/laravel.svg",
     },
+    {
+        name: "Arduino",
+        icon: "http://content.arduino.cc/brand/arduino_compressed-color.svg"
+    }
 ];

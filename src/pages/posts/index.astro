@@ -1,0 +1,29 @@
+---
+import { Link } from "@nextui-org/react";
+import Card from "../../components/Card.astro";
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../partials/Navbar.astro";
+import { posts } from "../../utils/data.astro";
+---
+
+<Layout>
+  <Navbar />
+  <section class="flex flex-col text-center gap-3 mt-10 px-3">
+    <Link className='text-white cursor-pointer text-sm hover:underline' href='/'>← Volver</Link>
+    <h2 class="text-4xl font-bold">Blog de Arduino</h2>
+    <p class="max-w-md mx-auto">Explora mis proyectos y avances en el mundo de Arduino, desde los primeros pasos hasta proyectos más avanzados.</p>
+    <div class="grid grid-cols-1 gap-3 md:grid-cols-3 py-6">
+      {
+        posts.map((post) => (
+          <Card
+            title={post.title}
+            image={post.image}
+            body={post.body}
+            date={post.date}
+            href={`/posts/${post.slug}`}
+          />
+        ))
+      }
+    </div>
+  </section>
+</Layout>

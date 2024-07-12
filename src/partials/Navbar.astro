@@ -4,11 +4,12 @@ import { Link } from "@nextui-org/react";
 
 <header class="py-6 px-3">
   <nav class="flex items-center justify-between">
-    <span class="font-bold text-2xl">
+    <Link className="font-bold text-2xl text-white cursor-pointer" href="/">
       A<span class="text-sky-500">V</span>
-    </span>
+    </Link>
 
     <ul class="flex items-center gap-5 font-medium">
+      <Link href="/posts" className="text-white cursor-pointer">Blog</Link>
       <Link
         href="/pdf/cv.pdf"
         className="relative p-1 cursor-pointer before text-white"
@@ -20,4 +21,3 @@ import { Link } from "@nextui-org/react";
     </ul>
   </nav>
 </header>
-

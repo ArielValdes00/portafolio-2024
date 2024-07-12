@@ -1,0 +1,58 @@
+---
+import BlogPost from "../../components/BlogPost";
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../partials/Navbar.astro";
+
+const post = {
+  title: "Mi Primer Proyecto: Encendiendo un LED",
+  content: `¡Hola a todos! En este segundo post, quiero compartir con ustedes mi primer proyecto con Arduino: encender un LED.
+
+Primero, aprendí cómo funciona la protoboard, comprendiendo las filas positivas y negativas. Esto me permitió colocar correctamente un LED y encenderlo directamente desde el pin de 5V de la placa Arduino. Fue aquí donde también entendí la importancia de las resistencias, usando una de 220 ohmios para proteger el LED.
+
+Una vez que dominé el encendido básico, cambié el pin de 5V a uno de los pines digitales del Arduino. Con un poco de programación, logré hacer que el LED parpadee. A continuación, les dejo el código que utilicé:`,
+  image: "/images/post-two.jpg",
+  date: "4 de Julio, 2024",
+  code: `void setup() {
+  pinMode(13, OUTPUT); // Configura el pin 13 como salida
+}
+
+void loop() {
+  digitalWrite(13, HIGH); // Enciende el LED
+  delay(1000); // Espera un segundo
+  digitalWrite(13, LOW); // Apaga el LED
+  delay(1000); // Espera un segundo
+}`,
+contentPostCode: `Este simple programa hace que el LED conectado al pin 13 se encienda y apague cada segundo. Fue emocionante ver cómo algo tan sencillo puede ser controlado mediante código. Aquí les dejo algunas imágenes y referencias para que puedan seguir mis pasos.
+
+No olviden revisar el datasheet del LED y la resistencia que utilicé. ¡Hasta el próximo post!`,
+  videoUrl:
+    "https://www.youtube.com/watch?v=QAXeJ2w5wlc&list=PLyLh25DppBIe40j3VBAslnVfs4Pz-B3ZB&index=3",
+    video: "/videos/second-post.mp4",
+  links: [
+    {
+      label: "Datasheet del LED",
+      url: "https://www.tme.eu/Document/e17ac5a5d91f1e843e5681cfa4a5ba4b/HLMP-HG64-VY0DD.pdf",
+    },
+    {
+      label: "Datasheet de la resistencia",
+      url: "https://www.vishay.com/docs/28731/cmfmil.pdf",
+    },
+  ],
+};
+---
+
+<Layout title="Welcome to Astro.">
+  <Navbar />
+  <BlogPost
+    client:only
+    title={post.title}
+    content={post.content}
+    contentPostCode={post.contentPostCode}
+    image={post.image}
+    codeString={post?.code}
+    date={post.date}
+    videoUrl={post.videoUrl}
+    links={post.links}
+    video={post.video}
+  />
+</Layout>

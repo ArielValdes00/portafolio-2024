@@ -1,54 +1,28 @@
 ---
-import { Button } from "@nextui-org/react";
-import { Image } from "astro:assets";
-
 interface Props {
   title: string;
   body: string;
   image: string;
+  href: string;
+  date: string;
 }
 
-const { title, body, image } = Astro.props;
+const { title, body, image, href, date } = Astro.props;
 ---
 
-<div class="overflow-hidden rounded-md bg-slate-800">
-  <img src={image} alt="project" />
-  <div class="p-3 text-center">
-    <h2 class="font-semibold text-lg">
-      {title}
-    </h2>
-    <p class="text-sm">
-      {body}
-    </p>
-    <div class="mt-3 flex items-center justify-center gap-3">
-      <Button
-        variant="solid"
-        radius="sm"
-        size="md"
-        className="text-gray-100 bg-slate-700 w-full font-semibold flex items-center"
-      >
-        <span>Github</span>
-        <Image
-          src="/icons-svg/github.svg"
-          alt="github"
-          height={13}
-          width={13}
-        />
-      </Button>
-      <Button
-        variant="solid"
-        radius="sm"
-        size="md"
-        className="text-gray-100 bg-slate-700 w-full font-semibold flex items-center"
-      >
-        <span>Demo</span>
-        <Image
-          src="/icons-svg/play.svg"
-          alt="github"
-          height={13}
-          width={13}
-        />
-      </Button>
+<div
+  class="overflow-hidden rounded-md bg-slate-800 hover:scale-[1.01] transition duration-200"
+>
+  <a href={href} class="block">
+    <img src={image} alt="project" class="h-64 md:h-44 w-full" />
+    <div class="px-3 py-2 pb-4 text-center flex flex-col gap-1">
+      <h2 class="font-semibold text-lg">
+        {title}
+      </h2>
+      <p class="text-xs text-gray-400">{date}</p>
+      <p class="text-sm">
+        {body}
+      </p>
     </div>
-  </div>
+  </a>
 </div>

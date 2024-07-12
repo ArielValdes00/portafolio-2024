@@ -1,0 +1,75 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../partials/Navbar.astro";
+import BlogPost from "../../components/BlogPost";
+
+const post = {
+  title: "Comenzando con Arduino",
+  content: `¡Hola a todos! En este primer post, quiero compartir con ustedes cómo me adentré en el emocionante mundo de la robótica con Arduino. Como no pude documentar mis comienzos en el desarrollo web, quisiera hacerlo ahora con la robótica utilizando Arduino.
+
+Desde hace tiempo, la robótica y la programación me han llamado la atención, pero nunca me había decidido a dar el primer paso. Un día, navegando por internet, encontré un kit de inicio de Arduino que prometía ser perfecto para principiantes. Este kit incluía una placa Arduino Uno, varios sensores, LEDs, resistencias y otros componentes. No dudé mucho y lo compré, emocionado por las posibilidades que se me presentaban. Aquí está la lista de componentes que trajo el kit:
+
+- 1 X Cable USB,
+- 1 X Arduino Uno,
+- 1 X Kit de cables jumper macho-macho,
+- 1 X Kit de cables dupondt hembra-hembra,
+- 1 X Protoboard de 400 puntos,
+- 1 X Shield para Arduino UNO con protoboard,
+- 1 X Fuente de alimentación 9V 1A,
+- 1 X Módulo giroscopio MPU 6050,
+- 1 X Módulo sensor ultrasónico HC-SR04,
+- 1 X Placa driver para motor paso a paso ULN2003,
+- 1 X Motor DC,
+- 1 X Motor paso a paso 28BYJ-48,
+- 1 X Servo Motor SG90,
+- 1 X Display LCD 1602,
+- 1 X Módulo joystick XY,
+- 1 X Módulo de relay de 1 canal,
+- 1 X Conector de batería 9V,
+- 1 X LED RGB,
+- 25 X LED (blanco, rojo, verde, amarillo, azul),
+- 100 X Resistencias (10R, 100R, 220R, 330R, 1K, 2K, 5.1K, 10K, 100K, 1M),
+- 15 X Transistores PN2222, BC547 y BC557,
+- 5 X Diodos 1N4001,
+- 1 X Termistor,
+- 5 X Capacitores de 22pF y 1uF,
+- 2 X Capacitores 10uF 50V y 100uF 50V,
+- 1 X Potenciómetro 10K,
+- 1 X Buzzer pasivo,
+- 1 X Circuito integrado 74HC595N,
+- 1 X Circuito integrado MAX7219,
+- 1 X Circuito integrado LD293D,
+- 1 X Receptor infrarrojo,
+- 2 X Fotoresistencias LDR 5mm,
+- 5 X Pulsadores,
+- 1 X Control remoto IR,
+- 1 X Display LED de 7 segmentos 1 Dígito,
+- 1 X Display LED de 7 segmentos 4 Dígitos,
+- 1 X Matrix de LEDs 8x8,
+- 1 X Sensor de efecto hall US1881 TO-92,
+
+Cuando llegó el kit, sentí una mezcla de emoción y nerviosismo. Abrí la caja y vi todos los componentes cuidadosamente empaquetados. La primera tarea fue familiarizarme con la placa y los distintos elementos. Siguiendo algunos tutoriales básicos en línea, aprendí cómo conectar la placa a mi computadora y cómo usar el software de Arduino para cargar programas en ella. En el siguiente post, les contaré sobre mi primer proyecto: encender un LED. ¡No se lo pierdan!`,
+  image: "/images/post-one.jpg",
+  date: "2 de Julio, 2024",
+  code: "",
+  videoUrl: "https://www.youtube.com/watch?v=QAXeJ2w5wlc&list=PLyLh25DppBIe40j3VBAslnVfs4Pz-B3ZB&index=2",
+  links: [
+    { label: "Descargar IDE de Arduino", url: "https://www.arduino.cc/en/software" },
+    { label: "Datasheet del Arduino Uno", url: "https://docs.arduino.cc/resources/datasheets/A000066-datasheet.pdf" }
+  ],
+};
+---
+
+<Layout title={"Post Uno"}>
+  <Navbar />
+  <BlogPost
+    client:only
+    title={post.title}
+    content={post.content}
+    image={post.image}
+    codeString={post?.code}
+    date={post.date}
+    videoUrl={post.videoUrl}
+    links={post.links} 
+  />
+</Layout>
