@@ -1,18 +1,27 @@
 ---
-import Card from "../components/Card.astro";
-import { posts } from "../utils/data.astro";
+import ProjectsCard from "../components/ProjectsCard.astro";
 ---
 
-<section class="grid grid-cols-1 gap-3 md:grid-cols-3 py-6 px-3">
-  {
-    posts.map((post) => (
-      <Card
-        title={post.title}
-        image={post.image}
-        body={post.body}
-        date={post.date}
-        href={`/posts/${post.slug}`}
-      />
-    ))
-  }
+<section class="py-6 px-3">
+  <ProjectsCard
+    title="Gestión de gastos"
+    description="Gestión de gastos con informes intuitivos y categorización para inversiones, ropa, viajes y más. Clear-Cash te permite rastrear gastos, establecer presupuestos y tomar decisiones informadas con gráficos detallados."
+    image="/images/bg-clear-cash1.png"
+    alt="ecommerce"
+    techs={["next.js ", "tailwind ", "laravel ", "PosgreSQL"]}
+  />
+  <ProjectsCard
+    title="NexBuy Ecommerce"
+    description="Tienda online con variedad de productos organizados en categorías. Incluye un carrito de compras intuitivo y pagos seguros mediante Paypal. Perfecta para una experiencia de compra cómoda y eficiente."
+    image="/images/bg-ecommerce.png"
+    alt="ecommerce"
+    techs={["next.js ", "tailwind ", "nest.js "]}
+  />
+  <ProjectsCard
+    title="Gemini IA Chat"
+    description="Plataforma de chat con IA que permite iniciar sesión para guardar conversaciones y enviar imágenes. Interactúa con inteligencia artificial para respuestas automáticas y gestiona tus chats de manera eficiente."
+    image="/images/bg-chat-app.png"
+    alt="ecommerce"
+    techs={["next.js ", "tailwind ", "nest.js ", "posgreSQL"]}
+  />
 </section>

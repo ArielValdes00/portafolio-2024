@@ -14,7 +14,6 @@ interface BlogPostProps {
     codeString?: string;
     language?: string;
     date: string;
-    videoUrl?: string;
     links?: { label: string, url: string }[];
     video?: string;
     video2?: string;
@@ -30,7 +29,6 @@ const BlogPost: React.FC<BlogPostProps> = ({
     image,
     codeString,
     date,
-    videoUrl,
     links,
     contentPostCode,
     video,
@@ -53,8 +51,8 @@ const BlogPost: React.FC<BlogPostProps> = ({
     }
 
     return (
-        <article className="prose max-w-xl mx-auto my-10">
-            <Link className='text-white cursor-pointer text-sm hover:underline' href='/posts'>← Volver</Link>
+        <article className="prose max-w-xl mx-auto my-10 px-2">
+            <Link className='text-white cursor-pointer text-sm hover:underline mb-5' href='/posts'>← Volver</Link>
             <div className="flex flex-col items-center justify-center gap-3 my-3">
                 <h1 className="text-4xl font-bold text-center">{title}</h1>
                 <p className="text-sm text-gray-400">{date}</p>
@@ -75,19 +73,11 @@ const BlogPost: React.FC<BlogPostProps> = ({
                     </React.Fragment>
                 ))}
                 {codeString && <CodeBlock codeString={codeString} />}
-                {contentPostCode}
+                <p className='mb-6'>{contentPostCode}</p>
                 {video && (
-                    <div className="mt-5">
-                        <iframe
-                            width="560"
-                            height="315"
-                            src={video}
-                            title="YouTube video player"
-                            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            className="w-full rounded-lg"
-                        ></iframe>
-                    </div>
+                    <video controls width="100%">
+                        <source src={video} type="video/mp4" />
+                    </video>
                 )}
                 <div className="prose max-w-xl mx-auto my-2">
                     {paragraphsContentPostVideo.map((paragraph, index) => (
@@ -97,27 +87,13 @@ const BlogPost: React.FC<BlogPostProps> = ({
                     ))}
                 </div>
                 {code2 && <CodeBlock codeString={code2} />}
-                {contentPostCode2}
+                <p className='mb-6'>{contentPostCode2}</p>
                 {video2 && (
-                    <div className="mt-5">
-                        <iframe
-                            width="560"
-                            height="315"
-                            src={video2}
-                            title="YouTube video player"
-                            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            className="w-full rounded-lg"
-                        ></iframe>
-                    </div>
+                    <video controls width="100%">
+                        <source src={video2} type="video/mp4" />
+                    </video>
                 )}
                 <p className='my-3'>{contentPostVideo2}</p>
-            </div>
-            <div className="mt-5">
-                <p className="font-bold">Video relacionado:</p>
-                <a href={videoUrl} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
-                    Ver video
-                </a>
             </div>
             {links && links.length > 0 && (
                 <div className="mt-5">

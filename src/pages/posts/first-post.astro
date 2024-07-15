@@ -5,9 +5,11 @@ import BlogPost from "../../components/BlogPost";
 
 const post = {
   title: "Comenzando con Arduino",
-  content: `¡Hola a todos! En este primer post, quiero compartir con ustedes cómo me adentré en el emocionante mundo de la robótica con Arduino. Como no pude documentar mis comienzos en el desarrollo web, quisiera hacerlo ahora con la robótica utilizando Arduino.
+  content: `¡Hola a todos! En este primer post, quiero compartir con ustedes cómo me adentré en el emocionante mundo de la robótica. Como no pude documentar mis comienzos en el desarrollo web, quisiera hacerlo ahora con la robótica utilizando Arduino para iniciar.
 
-Desde hace tiempo, la robótica y la programación me han llamado la atención, pero nunca me había decidido a dar el primer paso. Un día, navegando por internet, encontré un kit de inicio de Arduino que prometía ser perfecto para principiantes. Este kit incluía una placa Arduino Uno, varios sensores, LEDs, resistencias y otros componentes. No dudé mucho y lo compré, emocionado por las posibilidades que se me presentaban. Aquí está la lista de componentes que trajo el kit:
+Desde hace tiempo, la robótica y la programación me han llamado la atención, pero nunca me había decidido a dar el primer paso. 
+
+Un día, navegando por internet, encontré un kit de inicio de Arduino que prometía ser perfecto para principiantes. Este kit incluía una placa Arduino Uno, varios sensores, LEDs, resistencias y otros componentes. No dudé mucho y lo compré, emocionado por las posibilidades que se me presentaban. Aquí está la lista de componentes que trajo el kit:
 
 - 1 X Cable USB,
 - 1 X Arduino Uno,
@@ -48,14 +50,25 @@ Desde hace tiempo, la robótica y la programación me han llamado la atención, 
 - 1 X Matrix de LEDs 8x8,
 - 1 X Sensor de efecto hall US1881 TO-92,
 
-Cuando llegó el kit, sentí una mezcla de emoción y nerviosismo. Abrí la caja y vi todos los componentes cuidadosamente empaquetados. La primera tarea fue familiarizarme con la placa y los distintos elementos. Siguiendo algunos tutoriales básicos en línea, aprendí cómo conectar la placa a mi computadora y cómo usar el software de Arduino para cargar programas en ella. En el siguiente post, les contaré sobre mi primer proyecto: encender un LED. ¡No se lo pierdan!`,
+Cuando llegó el kit, sentí una mezcla de emoción y nerviosismo. Abrí la caja y vi todos los componentes cuidadosamente empaquetados. La primera tarea fue familiarizarme con la placa y los distintos elementos. 
+
+Siguiendo algunos tutoriales básicos en línea, aprendí cómo conectar la placa a mi computadora y cómo usar el software de Arduino para cargar programas en ella. En los siguientes posts les mostraré paso a paso mi avance.`,
   image: "/images/post-one.jpg",
   date: "2 de Julio, 2024",
   code: "",
-  videoUrl: "https://www.youtube.com/watch?v=QAXeJ2w5wlc&list=PLyLh25DppBIe40j3VBAslnVfs4Pz-B3ZB&index=2",
   links: [
-    { label: "Descargar IDE de Arduino", url: "https://www.arduino.cc/en/software" },
-    { label: "Datasheet del Arduino Uno", url: "https://docs.arduino.cc/resources/datasheets/A000066-datasheet.pdf" }
+    {
+      label: "Descargar IDE de Arduino",
+      url: "https://www.arduino.cc/en/software",
+    },
+    {
+      label: "Datasheet del Arduino Uno",
+      url: "https://docs.arduino.cc/resources/datasheets/A000066-datasheet.pdf",
+    },
+    {
+      label: "Video Tutorial",
+      url: "https://www.youtube.com/watch?v=QAXeJ2w5wlc&list=PLyLh25DppBIe40j3VBAslnVfs4Pz-B3ZB&index=2",
+    },
   ],
 };
 ---
@@ -63,13 +76,12 @@ Cuando llegó el kit, sentí una mezcla de emoción y nerviosismo. Abrí la caja
 <Layout title={"Post Uno"}>
   <Navbar />
   <BlogPost
-    client:only
+    client:only="react"
     title={post.title}
     content={post.content}
     image={post.image}
     codeString={post?.code}
     date={post.date}
-    videoUrl={post.videoUrl}
-    links={post.links} 
+    links={post.links}
   />
 </Layout>

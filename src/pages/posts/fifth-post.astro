@@ -1,0 +1,155 @@
+---
+import BlogPost from "../../components/BlogPost";
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../partials/Navbar.astro";
+
+const post = {
+  title: "Display LED de 7 Segmentos",
+  content: `¡Hola a todos! En esta entrega de mi proyecto de robótica con Arduino, vamos a explorar cómo integrar un sensor ultrasónico junto con un buzzer para crear un sistema de detección de proximidad. 
+
+Este proyecto nos permitirá entender mejor cómo funciona el sensor y cómo podemos utilizarlo en combinación con otros componentes para diferentes aplicaciones.
+
+Primero, vamos a utilizar un buzzer para indicar la proximidad detectada por el sensor ultrasónico. A continuación, te mostraré el código que implementa esta funcionalidad:`,
+  image: "/images/post-five.jpg",
+  date: "12 de Julio, 2024",
+  code: `const int trigPin = 12;
+const int echoPin = 11;
+const int buzzerPin = 10; // Pin del buzzer
+long duration;
+int distance;
+
+void setup() {
+  pinMode(trigPin, OUTPUT); // Configura el pin Trig como salida
+  pinMode(echoPin, INPUT);  // Configura el pin Echo como entrada
+  pinMode(buzzerPin, OUTPUT); // Configura el pin del buzzer como salida
+  Serial.begin(9600);       // Inicia la comunicación serie a 9600 baudios
+}
+
+void loop() {
+  // Limpia el pin Trig
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+
+  // Genera un pulso de 10 microsegundos en el pin Trig
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  // Lee el tiempo de duración del pulso en el pin Echo
+  duration = pulseIn(echoPin, HIGH);
+
+  // Calcula la distancia en centímetros
+  distance = duration * 0.034 / 2;
+
+  // Imprime la distancia en el Monitor Serie
+  Serial.print("Distancia: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+
+  // Si la distancia es menor o igual a 200 cm, enciende el buzzer con un tono
+  if (distance <= 10) {
+    tone(buzzerPin, 1000); // Genera un tono de 1000 Hz
+  } else {
+    noTone(buzzerPin); // Apaga el tono
+  }
+
+  delay(500); // Espera medio segundo antes de realizar otra medición
+}
+`,
+  code2: `const int trigPin = 12;
+const int echoPin = 11;
+const int buzzerPin = 10; // Pin del buzzer
+const int ledPin = 9;     // Pin del LED
+long duration;
+int distance;
+
+void setup() {
+  pinMode(trigPin, OUTPUT);   // Configura el pin Trig como salida
+  pinMode(echoPin, INPUT);    // Configura el pin Echo como entrada
+  pinMode(buzzerPin, OUTPUT); // Configura el pin del buzzer como salida
+  pinMode(ledPin, OUTPUT);    // Configura el pin del LED como salida
+  Serial.begin(9600);         // Inicia la comunicación serie a 9600 baudios
+}
+
+void loop() {
+  // Limpia el pin Trig
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+
+  // Genera un pulso de 10 microsegundos en el pin Trig
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  // Lee el tiempo de duración del pulso en el pin Echo
+  duration = pulseIn(echoPin, HIGH);
+
+  // Calcula la distancia en centímetros
+  distance = duration * 0.034 / 2;
+
+  // Imprime la distancia en el Monitor Serie
+  Serial.print("Distancia: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+
+  // Si la distancia es menor o igual a 10 cm, enciende el buzzer y el LED
+  if (distance <= 10) {
+    tone(buzzerPin, 1000); // Genera un tono de 1000 Hz
+    digitalWrite(ledPin, HIGH); // Enciende el LED
+  } else {
+    noTone(buzzerPin); // Apaga el tono del buzzer
+    digitalWrite(ledPin, LOW); // Apaga el LED
+  }
+
+  delay(500); // Espera medio segundo antes de realizar otra medición
+}`,
+  contentPostCode:
+    "En este video, explora cómo el buzzer indica la proximidad detectada por el sensor ultrasónico.",
+  contentPostCode2:
+    "Finalmente, en este segundo video, mostramos cómo se utiliza un LED para indicar visualmente la proximidad detectada por el sensor ultrasónico",
+  contentPostVideo:
+    "A continuación, vamos a agregar un LED para indicar visualmente la proximidad detectada por el sensor ultrasónico. Aquí tienes el código necesario para esta parte del proyecto:",
+    contentPostVideo2:
+  "Esto concluye nuestra exploración inicial con el sensor ultrasónico y sus aplicaciones básicas.",
+  video: "/videos/fourth-post.mp4",
+  video2: "/videos/fourth-post2.mp4",
+  links: [
+    {
+      label: "Datasheet del Sensor ultrasónico",
+      url: "https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf",
+    },
+    {
+      label: "Datasheet del Buzzer",
+      url: "https://www.farnell.com/datasheets/2171929.pdf",
+    },
+    {
+      label: "Simulación del Proyecto Sensor Ultrasónico + Buzzer",
+      url: "https://wokwi.com/projects/403142399663023105",
+    },
+    {
+      label: "Simulación del Proyecto Sensor Ultrasónico + Buzzer + LED",
+      url: "https://wokwi.com/projects/403424405654540289",
+    },
+  ],
+};
+---
+
+<Layout title="Welcome to Astro.">
+  <Navbar />
+  <BlogPost
+    client:only="react"
+    title={post.title}
+    content={post.content}
+    contentPostCode={post.contentPostCode}
+    contentPostCode2={post.contentPostCode2}
+    image={post.image}
+    codeString={post?.code}
+    date={post.date}
+    links={post.links}
+    video={post.video}
+    video2={post.video2}
+    contentPostVideo={post.contentPostVideo}
+    code2={post.code2}
+    contentPostVideo2={post.contentPostVideo2}
+  />
+</Layout>

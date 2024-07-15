@@ -4,12 +4,12 @@ import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../partials/Navbar.astro";
 
 const post = {
-  title: "Añadiendo Componentes: Botón y Potenciómetro",
-  content: `¡Hola a todos! En esta tercera entrega de mi proyecto con Arduino, vamos a dar un paso más allá añadiendo nuevos componentes al LED que encendimos en el último post.
+  title: "Agregando Componentes: Botón y Potenciómetro",
+  content: `¡Hola a todos! En esta entrega vamos a dar un paso más agregando nuevos componentes al LED que encendimos en el último post.
 
 En esta ocasión, vamos a integrar un botón para encender y apagar el LED con un solo toque. Además, exploraremos cómo utilizar un potenciómetro para ajustar el brillo del LED mientras está encendido. ¡Veamos cómo hacerlo!
 
-Primero, conectaremos el botón a un pin digital y programaremos el Arduino para que el LED se encienda cuando se presione el botón por primera vez y se apague cuando se presione nuevamente. Luego, usaremos el potenciómetro para controlar la intensidad luminosa del LED.
+Primero, conectaremos el botón a un pin digital y programaremos el Arduino para que el LED se encienda cuando se presione el botón por primera vez y se apague cuando se presione nuevamente. Después, usaremos el potenciómetro para controlar la intensidad luminosa del LED.
 
 A continuación, les dejo el código que utilizaremos para este nuevo proyecto:`,
   image: "/images/post-three.jpg",
@@ -89,15 +89,13 @@ void loop() {
   }
 }
 `,
-  contentPostCode: "En este video, explora cómo el botón permite controlar el encendido y apagado del LED con un toque.",
-  contentPostCode2: "A continuación, explora cómo el potenciómetro permite ajustar el brillo del LED una vez que está encendido.",
-  videoUrl:
-    "https://www.youtube.com/watch?v=QAXeJ2w5wlc&list=PLyLh25DppBIe40j3VBAslnVfs4Pz-B3ZB&index=3",
+  contentPostCode:
+    "En este video, explora cómo el botón permite controlar el encendido y apagado del LED con un toque.",
+  contentPostCode2:
+    "A continuación, explora cómo el potenciómetro permite ajustar el brillo del LED una vez que está encendido.",
   video: "/videos/third-post-2.mp4",
   video2: "/videos/third-post.mp4",
-contentPostVideo: `En este video, podrás ver cómo funciona el botón para encender y apagar el LED con un solo toque. Observa el cambio de estado del LED y cómo esto permite un control más intuitivo de la iluminación.
-
-Ahora, vamos a agregar un potenciómetro para ajustar el brillo del LED mientras está encendido. A continuación, te mostraré el código necesario para integrar el potenciómetro con nuestro proyecto:`,
+  contentPostVideo: `Ahora, vamos a agregar un potenciómetro para ajustar el brillo del LED mientras está encendido. A continuación, te mostraré el código necesario para integrar el potenciómetro con nuestro proyecto:`,
   contentPostVideo2: `En este segundo video, mostramos cómo se utiliza el potenciómetro para ajustar el brillo del LED una vez que está encendido. Exploramos cómo este ajuste fino puede mejorar la experiencia de uso de nuestro proyecto de Arduino.`,
   links: [
     {
@@ -118,13 +116,12 @@ Ahora, vamos a agregar un potenciómetro para ajustar el brillo del LED mientras
     },
   ],
 };
-
 ---
 
 <Layout title="Welcome to Astro.">
   <Navbar />
   <BlogPost
-    client:only
+    client:only="react"
     title={post.title}
     content={post.content}
     contentPostCode={post.contentPostCode}
@@ -132,7 +129,6 @@ Ahora, vamos a agregar un potenciómetro para ajustar el brillo del LED mientras
     image={post.image}
     codeString={post?.code}
     date={post.date}
-    videoUrl={post.videoUrl}
     links={post.links}
     video={post.video}
     video2={post.video2}

@@ -1,0 +1,47 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  alt: string;
+  techs: string[];
+}
+
+const { title, description, image, alt, techs } = Astro.props;
+
+const colors = [
+  "bg-rose-400",
+  "bg-sky-400",
+  "bg-lime-400",
+  "bg-fuchsia-400",
+  "bg-yellow-400",
+  "bg-emerald-400",
+];
+---
+
+<section
+  class="bg-slate-800 flex flex-col md:flex-row items-center rounded-md gap-4 my-5 hover:scale-[1.01] transition duration-200 cursor-pointer"
+>
+  <img
+    src={image}
+    alt={alt}
+    class="w-full md:w-90 md:h-[240px] lg:h-[200px] object-cover rounded-t-md md:rounded-tr-none md:rounded-l-md"
+  />
+  <div class="flex flex-col gap-2 pb-4 px-4 lg:p-2 md:py-0">
+    <div class="flex lg:flex-row flex-col items-center md:items-start gap-3 lg:gap-6">
+      <p class="text-2xl font-semibold">{title}</p>
+      <div class="flex gap-2">
+        {
+          techs.map((tech, index) => (
+            <span
+              class={`rounded-md text-sm font-semibold capitalize px-2 text-fuchsia-900 py-1 ${colors[index % colors.length]}`}
+            >
+              {tech}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+    <p class="text-gray-400 text-center md:text-start">{description}</p>
+  </div>
+</section>

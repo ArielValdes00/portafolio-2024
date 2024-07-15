@@ -3,15 +3,23 @@ import Layout from "../layouts/Layout.astro";
 import Hero from "../partials/Hero.astro";
 import Navbar from "../partials/Navbar.astro";
 import TechCarrousel from "../components/TechCarrousel";
-import Projects from "../partials/Projects.astro";
+import Posts from "../partials/Posts.astro";
 import Contact from "../partials/Contact.astro";
 import { Link } from "@nextui-org/react";
+import Projects from "../partials/Projects.astro";
 ---
 
 <Layout title="Welcome to Astro.">
   <Navbar />
   <Hero />
   <TechCarrousel client:load />
+  <p class="text-start px-3 text-2xl font-bold">
+    Proyectos <span
+      class="bg-gradient-to-br from-sky-500 to-cyan-400 bg-clip-text text-transparent"
+      >Recientes</span
+    >
+  </p>
+  <Projects />
   <div class="flex items-end justify-between pt-6">
     <p class="text-start px-3 text-2xl font-bold">
       Posteos <span
@@ -19,8 +27,12 @@ import { Link } from "@nextui-org/react";
         >Recientes</span
       >
     </p>
-    <Link href="/posts" className="text-white font-bold text-sm hover:underline cursor-pointer">View all Posts →</Link>
+    <Link
+      href="/posts"
+      className="text-white font-bold text-sm hover:underline cursor-pointer"
+      >View all Posts →</Link
+    >
   </div>
-  <Projects />
+  <Posts />
   <Contact />
 </Layout>

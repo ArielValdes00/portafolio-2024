@@ -7,7 +7,7 @@ const post = {
   title: "Mi Primer Proyecto: Encendiendo un LED",
   content: `¡Hola a todos! En este segundo post, quiero compartir con ustedes mi primer proyecto con Arduino: encender un LED.
 
-Primero, aprendí cómo funciona la protoboard, comprendiendo las filas positivas y negativas. Esto me permitió colocar correctamente un LED y encenderlo directamente desde el pin de 5V de la placa Arduino. Fue aquí donde también entendí la importancia de las resistencias, usando una de 220 ohmios para proteger el LED.
+Primero, aprendí cómo funciona la protoboard, comprendiendo las filas positivas y negativas. Esto me permitió colocar correctamente un LED y encenderlo directamente desde el pin de 5V de la placa Arduino. Fue acá donde también entendí la importancia de las resistencias, usando una de 220 ohmios para proteger el LED.
 
 Una vez que dominé el encendido básico, cambié el pin de 5V a uno de los pines digitales del Arduino. Con un poco de programación, logré hacer que el LED parpadee. A continuación, les dejo el código que utilicé:`,
   image: "/images/post-two.jpg",
@@ -22,12 +22,9 @@ void loop() {
   digitalWrite(13, LOW); // Apaga el LED
   delay(1000); // Espera un segundo
 }`,
-contentPostCode: `Este simple programa hace que el LED conectado al pin 13 se encienda y apague cada segundo. Fue emocionante ver cómo algo tan sencillo puede ser controlado mediante código. Aquí les dejo algunas imágenes y referencias para que puedan seguir mis pasos.
-
-No olviden revisar el datasheet del LED y la resistencia que utilicé. ¡Hasta el próximo post!`,
-  videoUrl:
-    "https://www.youtube.com/watch?v=QAXeJ2w5wlc&list=PLyLh25DppBIe40j3VBAslnVfs4Pz-B3ZB&index=3",
-    video: "/videos/second-post.mp4",
+  contentPostCode: `Este simple programa hace que el LED conectado al pin 13 se encienda y apague cada segundo. Fue emocionante ver cómo algo tan sencillo puede ser controlado mediante código. Acá les dejo un video de referencia para que puedan seguir mis pasos.`,
+  video: "/videos/second-post.mp4",
+  contentPostVideo: "No se olviden de revisar el datasheet del LED y la resistencia que utilicé. ¡Hasta el próximo post!",
   links: [
     {
       label: "Datasheet del LED",
@@ -37,6 +34,10 @@ No olviden revisar el datasheet del LED y la resistencia que utilicé. ¡Hasta e
       label: "Datasheet de la resistencia",
       url: "https://www.vishay.com/docs/28731/cmfmil.pdf",
     },
+    {
+      label: "Video Tutorial",
+      url: "https://www.youtube.com/watch?v=QAXeJ2w5wlc&list=PLyLh25DppBIe40j3VBAslnVfs4Pz-B3ZB&index=3",
+    },
   ],
 };
 ---
@@ -44,14 +45,14 @@ No olviden revisar el datasheet del LED y la resistencia que utilicé. ¡Hasta e
 <Layout title="Welcome to Astro.">
   <Navbar />
   <BlogPost
-    client:only
+    client:only="react"
     title={post.title}
     content={post.content}
     contentPostCode={post.contentPostCode}
+    contentPostVideo={post.contentPostVideo}
     image={post.image}
     codeString={post?.code}
     date={post.date}
-    videoUrl={post.videoUrl}
     links={post.links}
     video={post.video}
   />
