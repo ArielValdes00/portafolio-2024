@@ -1,0 +1,142 @@
+---
+import BlogPost from "../../components/BlogPost";
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../partials/Navbar.astro";
+
+const post = {
+  title: "Análisis y pruebas de motores",
+  content: `En este artículo, abordaremos dos tipos de motores principales: el motor DC y el servo motor, cada uno en proyectos de prueba diferentes.
+
+Empezaremos con el motor DC, fundamental para el control de movimiento en robots y dispositivos mecatrónicos. Para su funcionamiento, es esencial proporcionar una alimentación externa adecuada, como una batería de 9V.
+
+Utilizaremos el controlador L293N, que nos permite controlar la dirección y velocidad del motor con Arduino de manera efectiva.
+
+El motor DC ofrece una solución robusta y versátil para aplicaciones que requieren un control preciso de velocidad y dirección. Su integración con Arduino mediante el controlador L293N simplifica la implementación en proyectos de robótica y automatización.
+
+A continuación se muestra el código utilizado para controlar el motor DC con Arduino:`,
+  image: "/images/post-six.jpg",
+  date: "14 de Julio, 2024",
+  code: `
+const int enA = 11;  // Pin PWM para controlar la velocidad
+const int in1 = 12;   // Pin digital para dirección
+const int in2 = 7;   // Pin digital para dirección
+
+void setup() {
+  // Configurar los pines como salidas
+  pinMode(enA, OUTPUT);
+  pinMode(in1, OUTPUT);
+  pinMode(in2, OUTPUT);
+}
+
+void loop() {
+  // Hacer girar el motor hacia adelante
+  digitalWrite(in1, HIGH);
+  digitalWrite(in2, LOW);
+  analogWrite(enA, 255); // Velocidad máxima
+  delay(2000); // Girar por 2 segundos
+
+  // Hacer girar el motor hacia atrás
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, HIGH);
+  analogWrite(enA, 255); // Velocidad máxima
+  delay(2000); // Girar por 2 segundos
+
+  // Detener el motor
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, LOW);
+  analogWrite(enA, 0); // Velocidad 0
+  delay(2000); // Esperar 2 segundos
+}
+`,
+  code2: `#include <Servo.h>
+
+// Crear un objeto Servo para controlar el servo motor
+Servo myServo;
+
+// Pin al que está conectado el servo motor
+const int servoPin = 9;
+
+void setup() {
+  // Adjuntar el servo motor al pin 9
+  myServo.attach(servoPin);
+}
+
+void loop() {
+  // Mover el servo motor a 0 grados
+  myServo.write(0);
+  delay(1000); // Esperar 1 segundo
+
+  // Mover el servo motor a 90 grados
+  myServo.write(90);
+  delay(1000); // Esperar 1 segundo
+
+  // Mover el servo motor a 180 grados
+  myServo.write(180);
+  delay(1000); // Esperar 1 segundo
+
+  // Mover el servo motor de regreso a 90 grados
+  myServo.write(90);
+  delay(1000); // Esperar 1 segundo
+}
+`,
+  contentPostCode:
+    "En este video, se muestra el funcionamiento del motor DC controlado mediante Arduino y el L293N, demostrando cómo se puede controlar la dirección y velocidad del motor en diferentes configuraciones.",
+  contentPostCode2:
+    "En este segundo video, podrás observar el funcionamiento del servo motor en acción, controlado mediante Arduino. Verás cómo el servo motor se mueve y posiciona con precisión en diferentes ángulos, demostrando su capacidad para aplicaciones de posicionamiento automático.",
+  contentPostVideo: `Ahora, pasaremos a explorar el servo motor, conocido por su capacidad para posicionamiento preciso en aplicaciones como brazos robóticos y sistemas de dirección.
+
+Para utilizar el servo motor desde el IDE de Arduino, es necesario instalar la librería Servo, que proporciona funciones y herramientas para controlar el servo de manera efectiva y precisa.
+
+A continuación, se muestra el código utilizado para controlar el servo motor con Arduino:`,
+contentPostVideo2:
+`Concluimos nuestra exploración de motores en proyectos con Arduino. El motor DC ofrece control robusto de velocidad y dirección, mientras que el servo motor destaca por su precisión en posicionamiento.`,
+  video: "/videos/sixth-post.mp4",
+  video2: "/videos/sixth-post-2.mp4",
+  links: [
+    {
+      label: "Datasheet del Motor DC",
+      url: "https://pdf1.alldatasheet.es/datasheet-pdf/view/1262794/PROMOCO/RF-370.html",
+    },
+    {
+      label: "Datasheet del Servo motor",
+      url: "https://pdf1.alldatasheet.es/datasheet-pdf/view/1572383/ETC/SG90.html",
+    },
+    {
+      label: "Datasheet del L293N",
+      url: " https://pdf1.alldatasheet.es/datasheet-pdf/view/26887/TI/L293N.html",
+    },
+    {
+      label: "Simulación del Servo Motor",
+      url: "https://wokwi.com/projects/403596362070313985",
+    },
+    {
+      label: "Simulación del Motor DC",
+      url: "https://www.tinkercad.com/things/hSYz06raDVL-funky-jaagub-snicket/editel?tenant=circuits",
+    },
+    {
+      label: "Video Tutorial",
+      url: "https://www.youtube.com/watch?v=GUhPrO1BEJ0",
+    },
+  ],
+};
+---
+
+<Layout title="Welcome to Astro.">
+  <Navbar />
+  <BlogPost
+    client:only="react"
+    title={post.title}
+    content={post.content}
+    contentPostCode={post.contentPostCode}
+    contentPostCode2={post.contentPostCode2}
+    image={post.image}
+    codeString={post?.code}
+    date={post.date}
+    links={post.links}
+    video={post.video}
+    video2={post.video2}
+    contentPostVideo={post.contentPostVideo}
+    code2={post.code2}
+    contentPostVideo2={post.contentPostVideo2}
+  />
+</Layout>

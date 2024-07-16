@@ -5,9 +5,10 @@ interface Props {
   image: string;
   alt: string;
   techs: string[];
+  link: string;
 }
 
-const { title, description, image, alt, techs } = Astro.props;
+const { title, description, image, alt, techs, link } = Astro.props;
 
 const colors = [
   "bg-rose-400",
@@ -19,7 +20,9 @@ const colors = [
 ];
 ---
 
-<section
+<a
+  href={link}
+  target="_blank"
   class="bg-slate-800 flex flex-col md:flex-row items-center rounded-md gap-4 my-5 hover:scale-[1.01] transition duration-200 cursor-pointer"
 >
   <img
@@ -28,7 +31,9 @@ const colors = [
     class="w-full md:w-90 md:h-[240px] lg:h-[200px] object-cover rounded-t-md md:rounded-tr-none md:rounded-l-md"
   />
   <div class="flex flex-col gap-2 pb-4 px-4 lg:p-2 md:py-0">
-    <div class="flex lg:flex-row flex-col items-center md:items-start gap-3 lg:gap-6">
+    <div
+      class="flex lg:flex-row flex-col items-center md:items-start gap-3 lg:gap-5"
+    >
       <p class="text-2xl font-semibold">{title}</p>
       <div class="flex gap-2">
         {
@@ -44,4 +49,4 @@ const colors = [
     </div>
     <p class="text-gray-400 text-center md:text-start">{description}</p>
   </div>
-</section>
+</a>
