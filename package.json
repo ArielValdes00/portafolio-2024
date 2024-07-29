@@ -14,19 +14,23 @@
     "@astrojs/react": "^3.3.0",
     "@astrojs/tailwind": "^5.1.0",
     "@botpress/sdk": "^0.6.15",
+    "@emailjs/browser": "^4.4.1",
     "@nextui-org/react": "^2.2.10",
     "@types/react": "^18.2.77",
     "@types/react-dom": "^18.2.25",
     "astro": "^4.6.0",
     "axios": "^1.6.8",
+    "dotenv": "^16.4.5",
     "framer-motion": "^11.0.28",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-syntax-highlighter": "^15.5.0",
+    "react-toastify": "^10.0.5",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5"
   },
   "devDependencies": {
+    "@types/node": "^20.14.12",
     "@types/react-syntax-highlighter": "^15.5.13"
   }
 }

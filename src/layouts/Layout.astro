@@ -1,3 +1,8 @@
+---
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+---
+
 <!doctype html>
 <html lang="en" class="bg-slate-900">
   <head>
@@ -5,12 +10,24 @@
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
     <title>Ariel Valdés | Fullstack-Developer</title>
   </head>
   <body class="text-gray-100">
     <main class="max-w-[920px] mx-auto">
       <slot />
+      <ToastContainer
+        client:load
+        position="top-center"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <script
         is:inline
         src="https://cdn.botpress.cloud/webchat/v1/inject.js"
